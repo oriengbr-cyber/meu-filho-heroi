@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu Filho Herói | Orieng</title>
+<meta name="description" content="Curso Meu Filho Herói, da Orieng: 5 aulas para transformar seu filho em super-herói e criar um vídeo com inteligência artificial. Presente de Dia das Crianças por R$ 37.">
+<meta property="og:title" content="Meu Filho Herói">
+<meta property="og:description" content="Transforme seu filho em super-herói com inteligência artificial. 5 aulas, R$ 37.">
+<meta property="og:image" content="img/poster.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0F1F4B;
+    --night-2: #1A2E66;
+    --sky: #1FA2E8;
+    --gold: #FFC23A;
+    --cape: #E3262E;
+    --ink: #000;
+    --paper: #fff;
+    --stroke: 4px;
+    --hard: 6px 6px 0 var(--ink);
+    --display: "Luckiest Guy", "Impact", sans-serif;
+    --body: "Nunito", system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--paper);
+    background-color: var(--night);
+    background-image: radial-gradient(circle, var(--night-2) 1.3px, transparent 1.7px);
+    background-size: 11px 11px;
+    overflow-x: hidden;
+  }
+  img, video { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 4px solid var(--gold); outline-offset: 3px; }
+  .wrap { width: min(1140px, 100% - 32px); margin-inline: auto; }
+
+  /* Título em estilo gibi, usado em todo o site */
+  .comic {
+    font-family: var(--display);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: .01em;
+    -webkit-text-stroke: 2px var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 4px 4px 0 var(--ink);
+  }
+
+  /* ---------- Faixa de prazo ---------- */
+  .deadline {
+    background: var(--cape);
+    color: var(--paper);
+    font-weight: 900;
+    text-align: center;
+    padding: 9px 16px;
+    font-size: .95rem;
+    border-bottom: 3px solid var(--ink);
+  }
+  .deadline strong { color: var(--gold); font-variant-numeric: tabular-nums; }
+
+  .topbar { padding: 22px 0 0; }
+  .topbar img { width: 150px; height: auto; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 28px 0 72px; }
+  .hero-grid { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 920px) { .hero-grid { grid-template-columns: 1.1fr .9fr; gap: 56px; } }
+
+  .gift {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 900;
+    border: 3px solid var(--ink);
+    padding: 6px 14px;
+    transform: rotate(-2deg);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    margin: 0 0 18px;
+    color: var(--paper);
+  }
+  .hero h1 span { display: block; color: var(--gold); }
+  .hero-lead { font-size: 1.15rem; font-weight: 700; max-width: 44ch; margin: 0 0 26px; color: #DCE6FF; }
+
+  .name-card {
+    background: var(--paper);
+    color: var(--ink);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: 6px 6px 0 var(--gold);
+    padding: 16px 18px 18px;
+    margin-bottom: 26px;
+    max-width: 520px;
+  }
+  .name-card label { display: block; font-weight: 900; margin-bottom: 8px; }
+  .name-card input {
+    width: 100%;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 14px;
+    border: 3px solid var(--ink);
+    background: #FFF7DD;
+  }
+  .titles { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .titles button {
+    font: inherit;
+    font-weight: 900;
+    font-size: .9rem;
+    padding: 6px 12px;
+    min-height: 40px;
+    border: 3px solid var(--ink);
+    background: var(--paper);
+    cursor: pointer;
+  }
+  .titles button[aria-pressed="true"] { background: var(--gold); }
+
+  .buy-row { display: flex; flex-wrap: wrap; gap: 18px 22px; align-items: center; }
+  .price-tag {
+    background: var(--gold);
+    color: var(--ink);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: var(--hard);
+    padding: 8px 18px 6px;
+    transform: rotate(-3deg);
+    line-height: 1;
+  }
+  .price-tag small { display: block; font-weight: 900; font-size: .85rem; margin-bottom: 2px; }
+  .price-tag b { font-family: var(--display); font-weight: 400; font-size: 2.8rem; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(1.2rem, 3.4vw, 1.5rem);
+    letter-spacing: .02em;
+    line-height: 1.15;
+    text-decoration: none;
+    color: var(--paper);
+    background: var(--cape);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: var(--hard);
+    padding: 16px 26px 12px;
+    min-height: 62px;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+    -webkit-text-stroke: 1px var(--ink);
+    paint-order: stroke fill;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--ink); }
+  .btn:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
+  .btn-wide { width: 100%; }
+  .cta-note { font-size: .92rem; font-weight: 700; margin: 16px 0 0; color: #DCE6FF; }
+
+  .hero-art { position: relative; max-width: 440px; margin-inline: auto; width: 100%; }
+  @media (max-width: 919px) { .hero-art { order: -1; max-width: 320px; } }
+  .hero-art .box {
+    width: 100%;
+    filter: drop-shadow(14px 18px 0 rgba(0,0,0,.45));
+  }
+  .burst {
+    position: absolute;
+    left: -6%;
+    top: 30%;
+    width: 64%;
+    transform-origin: center;
+    animation: pow .7s cubic-bezier(.2, .9, .3, 1.3) .2s both;
+  }
+  .burst.swap { animation: swap .35s ease; }
+  .burst svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .burst-text {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 0 17%;
+  }
+  .hero-name { color: var(--paper); font-size: clamp(1.4rem, 4.6vw, 2.2rem); line-height: .95; word-break: break-word; }
+  .balloon {
+    position: absolute;
+    right: -4%;
+    top: 3%;
+    max-width: 48%;
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    border-radius: 50% / 44%;
+    padding: 12px 16px;
+    font-weight: 900;
+    font-size: clamp(.78rem, 2.4vw, .95rem);
+    line-height: 1.2;
+    text-align: center;
+    z-index: 2;
+  }
+  .balloon::after {
+    content: "";
+    position: absolute;
+    left: 22%;
+    bottom: -16px;
+    border: 9px solid transparent;
+    border-top: 15px solid var(--ink);
+    border-bottom: 0;
+    transform: skewX(25deg);
+  }
+
+  /* ---------- Seções ---------- */
+  .section { padding: 80px 0; }
+  .section-sky {
+    background-color: var(--sky);
+    background-image: radial-gradient(circle, #0E78BF 1.2px, transparent 1.6px);
+    background-size: 10px 10px;
+    border-block: var(--stroke) solid var(--ink);
+  }
+  .section-title { font-size: clamp(2.1rem, 6vw, 3.6rem); margin: 0 0 12px; color: var(--paper); }
+  .section-lead { font-weight: 700; max-width: 54ch; margin: 0 0 40px; font-size: 1.1rem; }
+
+  /* ---------- Como funciona: 3 passos com imagens ---------- */
+  .steps { display: grid; gap: 28px; }
+  .step {
+    background: var(--paper);
+    color: var(--ink);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: 10px 10px 0 var(--ink);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    overflow: hidden;
+  }
+  .step-media { position: relative; background: #E9E4DE; border-bottom: var(--stroke) solid var(--ink); }
+  .step-media img { width: 100%; height: 100%; object-fit: cover; }
+  .step-body { padding: 24px 22px 26px; }
+  .step-num {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--gold);
+    font-family: var(--display);
+    font-size: 1.15rem;
+    padding: 5px 12px 2px;
+    margin-bottom: 12px;
+  }
+  .step h3 { font-family: var(--display); font-weight: 400; font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.02; margin: 0 0 10px; }
+  .step p { margin: 0; font-weight: 700; max-width: 44ch; }
+  .step .hint {
+    margin-top: 14px;
+    background: #FFF4D1;
+    border-left: 6px solid var(--gold);
+    padding: 10px 12px;
+    font-size: .95rem;
+  }
+  .sfx {
+    position: absolute;
+    font-family: var(--display);
+    color: var(--gold);
+    -webkit-text-stroke: 2px var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 var(--ink);
+    font-size: clamp(2rem, 5vw, 3rem);
+    transform: rotate(-10deg);
+    pointer-events: none;
+  }
+
+  .morph { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
+  .morph div { position: relative; width: min(120px, 38%); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--gold); }
+  .morph img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+  .morph span { position: absolute; left: 0; bottom: 0; background: var(--ink); color: var(--paper); font-weight: 900; font-size: .78rem; padding: 2px 8px; }
+  .morph svg { flex: none; }
+  .step-1 .step-media { aspect-ratio: 4 / 5; }
+  .step-1 .step-media img { object-position: center 20%; }
+  .step-2 .step-media { aspect-ratio: 1344 / 752; }
+  .step-3 .step-media { aspect-ratio: 4 / 5; }
+  .step-3 .step-media img { object-position: center 30%; }
+
+  @media (min-width: 860px) {
+    .steps { grid-template-columns: repeat(12, 1fr); gap: 32px; }
+    .step-1 { grid-column: 1 / span 4; grid-template-rows: auto 1fr; transform: rotate(-1deg); }
+    .step-2 { grid-column: 5 / span 8; grid-template-rows: auto 1fr; transform: rotate(.6deg); }
+    .step-3 { grid-column: 1 / -1; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: stretch; }
+    .step-3 .step-media { aspect-ratio: auto; min-height: 420px; border-bottom: 0; border-right: var(--stroke) solid var(--ink); }
+    .step-3 .step-body { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
+  }
+
+  /* ---------- Faixa: IAs gratuitas ---------- */
+  .free-band {
+    background: var(--gold);
+    color: var(--ink);
+    border-block: var(--stroke) solid var(--ink);
+    padding: 34px 0;
+  }
+  .free-grid { display: grid; gap: 20px 32px; align-items: center; }
+  @media (min-width: 720px) { .free-grid { grid-template-columns: auto 1fr; } }
+  .free-stamp {
+    justify-self: start;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--cape);
+    color: var(--paper);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: var(--hard);
+    display: grid;
+    place-content: center;
+    text-align: center;
+    transform: rotate(-8deg);
+  }
+  .free-stamp span { font-family: var(--display); font-size: 2.3rem; line-height: 1; -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
+  .free-stamp small { font-weight: 900; font-size: .85rem; }
+  .free-band h2 { font-size: clamp(1.9rem, 5.4vw, 3rem); margin: 0 0 8px; color: var(--paper); }
+  .free-band p { margin: 0; font-weight: 700; font-size: 1.15rem; max-width: 56ch; }
+  .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+  .badges .gift { margin: 0; }
+  .gift.gift-free { background: var(--paper); transform: rotate(1.5deg); }
+
+  /* ---------- Bastidores ---------- */
+  .cast { display: grid; gap: 24px; }
+  .cast figure {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: var(--hard);
+    padding: 10px;
+  }
+  .cast img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 3px solid var(--ink); }
+  .cast figcaption { padding: 10px 4px 2px; font-weight: 700; }
+  .cast figcaption b { font-family: var(--display); font-weight: 400; font-size: 1.3rem; margin-right: 4px; }
+  @media (min-width: 720px) {
+    .cast { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+    .cast-hero { grid-column: 1 / -1; transform: rotate(-.6deg); }
+    .cast-hero img { aspect-ratio: 1344 / 752; }
+    .cast-villain { transform: rotate(1deg); }
+    .cast-city { transform: rotate(-1deg); }
+  }
+
+  /* ---------- Vídeos ---------- */
+  .reels { display: grid; gap: 22px; }
+  .reel {
+    position: relative;
+    margin: 0;
+    background: var(--ink);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: var(--hard);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .reel-tall { aspect-ratio: 9 / 16; max-width: 360px; width: 100%; justify-self: center; }
+  @media (min-width: 860px) {
+    .reels { grid-template-columns: 1fr 1fr .9fr; align-items: stretch; }
+    .reel-feature { grid-column: 1 / span 2; }
+    .reel-tall { grid-column: 3; grid-row: 1 / span 2; aspect-ratio: auto; max-width: none; height: 100%; }
+  }
+  .reel video { width: 100%; height: 100%; object-fit: cover; background: var(--ink); }
+  .reel figcaption b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.5rem; line-height: 1; color: var(--gold); }
+  .reels-cta { text-align: center; margin: 40px 0 0; }
+  @media (max-width: 859px) {
+    .reel:not(.reel-tall) .play { place-items: start end; padding: 12px; }
+    .reel:not(.reel-tall) .play-icon { width: 58px; height: 58px; }
+  }
+  @media (min-width: 860px) {
+    .reel:not(.reel-feature):not(.reel-tall) .play-icon { width: 56px; height: 56px; }
+    .reel:not(.reel-feature):not(.reel-tall) .play-icon svg { width: 22px; height: 22px; }
+    .reel:not(.reel-feature):not(.reel-tall) .play { place-items: start end; padding: 12px; }
+  }
+  .reel button.play {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    border: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.65), transparent 45%);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .play-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    display: grid;
+    place-items: center;
+  }
+  .reel figcaption {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    font-weight: 900;
+    color: var(--paper);
+    text-shadow: 0 2px 6px rgba(0,0,0,.8);
+    pointer-events: none;
+  }
+  .reel.playing button.play, .reel.playing figcaption { display: none; }
+
+  /* ---------- Aulas ---------- */
+  .strip {
+    background: var(--ink);
+    border: var(--stroke) solid var(--ink);
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+  }
+  @media (min-width: 680px) {
+    .strip { grid-template-columns: repeat(6, 1fr); }
+    .panel:nth-child(1) { grid-column: span 3; }
+    .panel:nth-child(2) { grid-column: span 3; }
+    .panel:nth-child(n+3) { grid-column: span 2; }
+  }
+  .panel {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 22px 20px 24px;
+  }
+  .panel:nth-child(1) { background: var(--gold); }
+  .panel:nth-child(3) { background: #D3EEFF; }
+  .panel:nth-child(5) { background: #FFD9DA; }
+  .panel-num {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--display);
+    font-size: 1.05rem;
+    padding: 4px 10px 1px;
+    margin-bottom: 12px;
+  }
+  .panel h3 { font-family: var(--display); font-weight: 400; font-size: clamp(1.45rem, 3.2vw, 1.85rem); line-height: 1.04; margin: 0 0 8px; }
+  .panel p { margin: 0; font-weight: 700; font-size: .98rem; max-width: 44ch; }
+
+  /* ---------- Pra quem é ---------- */
+  .fit { display: grid; gap: 32px; align-items: center; }
+  @media (min-width: 860px) { .fit { grid-template-columns: .9fr 1.1fr; gap: 48px; } }
+  .fit-photo {
+    border: var(--stroke) solid var(--ink);
+    box-shadow: 10px 10px 0 var(--gold);
+    transform: rotate(-1.5deg);
+  }
+  .fit-photo img { width: 100%; aspect-ratio: 392 / 256; object-fit: cover; }
+  .fit-list { list-style: none; padding: 0; margin: 0 0 26px; }
+  .fit-list li { padding: 10px 0 10px 42px; position: relative; font-weight: 700; font-size: 1.08rem; }
+  .fit-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 28px;
+    height: 28px;
+    background: var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat;
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+  }
+  .perks { display: flex; flex-wrap: wrap; gap: 10px; }
+  .perks span {
+    background: var(--paper);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    font-weight: 900;
+    padding: 6px 12px;
+  }
+
+  /* ---------- Oferta ---------- */
+  .offer-grid { display: grid; gap: 36px; align-items: center; }
+  @media (min-width: 860px) { .offer-grid { grid-template-columns: .8fr 1.2fr; } }
+  .offer-art { max-width: 340px; margin-inline: auto; transform: rotate(-3deg); filter: drop-shadow(12px 14px 0 rgba(0,0,0,.45)); }
+  .offer {
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    border: var(--stroke) solid var(--ink);
+    box-shadow: 12px 12px 0 var(--ink);
+    padding: 32px 24px 28px;
+    text-align: center;
+  }
+  .offer-tag {
+    position: absolute;
+    top: -24px;
+    right: -8px;
+    background: var(--cape);
+    color: var(--paper);
+    border: var(--stroke) solid var(--ink);
+    font-family: var(--display);
+    font-size: 1.1rem;
+    padding: 8px 14px 4px;
+    transform: rotate(5deg);
+  }
+  .offer h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1; margin: 0 0 18px; }
+  .offer ul { list-style: none; padding: 0; margin: 0 auto 22px; text-align: left; max-width: 420px; font-weight: 700; }
+  .offer li { padding: 6px 0 6px 28px; position: relative; }
+  .offer li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 14px;
+    height: 14px;
+    background: var(--gold);
+    border: 3px solid var(--ink);
+    transform: rotate(45deg);
+  }
+  .offer .only { font-weight: 900; margin: 0; }
+  .price { font-size: clamp(3.6rem, 13vw, 5.4rem); margin: 4px 0 4px; color: var(--gold); }
+  .price-sub { font-weight: 700; margin: 0 0 22px; }
+  .clock { display: flex; justify-content: center; gap: 8px; margin: 0 0 22px; }
+  .clock div { background: var(--night); color: var(--gold); min-width: 74px; padding: 8px 6px 6px; font-weight: 900; font-size: .75rem; border: 3px solid var(--ink); }
+  .clock b { display: block; font-family: var(--display); font-weight: 400; font-size: 2rem; line-height: 1; color: var(--paper); font-variant-numeric: tabular-nums; }
+  .ended .clock, .ended .btn { display: none; }
+  .ended-msg { display: none; font-weight: 900; }
+  .ended .ended-msg { display: block; }
+
+  /* ---------- FAQ ---------- */
+  .faq { max-width: 780px; }
+  .faq details { background: var(--paper); color: var(--ink); border: var(--stroke) solid var(--ink); margin-bottom: 12px; }
+  .faq summary { cursor: pointer; list-style: none; padding: 16px 52px 16px 18px; font-weight: 900; font-size: 1.05rem; position: relative; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--display);
+    font-size: 1.8rem;
+    line-height: 1;
+    transition: transform .2s ease;
+  }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq details[open] summary { background: var(--gold); border-bottom: 3px solid var(--ink); }
+  .faq details p { margin: 0; padding: 14px 18px 18px; font-weight: 700; }
+
+  footer { border-top: var(--stroke) solid var(--ink); background: var(--ink); padding: 32px 0 100px; font-size: .9rem; font-weight: 700; color: #B9C6E8; }
+  footer img { width: 120px; margin-bottom: 10px; }
+
+  .sticky-cta { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 20; transform: translateY(140%); transition: transform .25s ease; }
+  .sticky-cta.show { transform: none; }
+  @media (min-width: 920px) { .sticky-cta { display: none; } footer { padding-bottom: 32px; } }
+
+  @keyframes pow {
+    0% { transform: scale(.2) rotate(-25deg); opacity: 0; }
+    60% { transform: scale(1.12) rotate(4deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0); }
+  }
+  @keyframes swap {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.12) rotate(-3deg); }
+    100% { transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deadline" role="status">Oferta de Dia das Crianças: termina em <strong data-countdown-inline>--:--:--</strong></div>
+
+<div class="wrap topbar">
+  <img src="img/logo-orieng.png" alt="Orieng" width="600" height="198">
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badges">
+        <span class="gift">Presente de Dia das Crianças</span>
+        <span class="gift gift-free">Feito com IAs gratuitas</span>
+      </div>
+      <h1 class="comic">Seu filho virando super-herói <span>num vídeo feito por você</span></h1>
+      <p class="hero-lead">Em 5 aulas, você aprende a transformar uma foto do seu filho em um herói de cinema. Tudo com ferramentas de IA gratuitas ou com o menor custo possível, sem precisar de experiência.</p>
+
+      <div class="name-card">
+        <label for="kidName">Teste agora: qual é o nome do seu filho?</label>
+        <input id="kidName" type="text" maxlength="14" placeholder="Ex.: Pedro" autocomplete="off">
+        <div class="titles" role="group" aria-label="Escolha o título do herói">
+          <button type="button" data-title="Super" aria-pressed="true">Super</button>
+          <button type="button" data-title="Capitão" aria-pressed="false">Capitão</button>
+          <button type="button" data-title="Incrível" aria-pressed="false">Incrível</button>
+          <button type="button" data-title="Mega" aria-pressed="false">Mega</button>
+        </div>
+      </div>
+
+      <div class="buy-row">
+        <div class="price-tag"><small>Apenas</small><b>R$ 37</b></div>
+        <a class="btn" href="https://hotm.io/meufilhoheroi" id="ctaTop">Quero criar o herói do meu filho</a>
+      </div>
+      <p class="cta-note">Acesso imediato depois da compra. Dá tempo de fazer hoje.</p>
+    </div>
+
+    <div class="hero-art" id="heroArt">
+      <img class="box" src="img/caixa.webp" alt="Capa do curso Meu Filho Herói: um menino de capa vermelha voando sobre a cidade" width="350" height="560">
+      <p class="balloon" id="balloon">Ei, a cidade precisa de você!</p>
+      <div class="burst" id="burst">
+        <svg viewBox="0 0 400 300" aria-hidden="true">
+          <polygon points="200,6 228,78 296,22 284,104 382,82 318,146 396,190 306,198 344,282 262,234 232,296 196,236 150,294 132,230 46,270 88,196 4,168 86,136 20,62 118,90 116,8 164,72"
+                   fill="#E3262E" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+        </svg>
+        <div class="burst-text"><span class="hero-name comic" id="heroName" aria-live="polite">Super Herói!</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="free-band" aria-labelledby="free-title">
+    <div class="wrap free-grid">
+      <div class="free-stamp" aria-hidden="true">
+        <span>Grátis</span>
+        <small>ou quase</small>
+      </div>
+      <div>
+        <h2 class="comic" id="free-title">Sem gastar com ferramentas caras</h2>
+        <p>Usamos IAs gratuitas ou com o menor custo possível para fazer um vídeo de cinema. O curso mostra como tirar o máximo das versões grátis, sem assinar programa caro.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sky" id="como-funciona">
+    <div class="wrap">
+      <h2 class="section-title comic">Como funciona</h2>
+      <p class="section-lead" style="color:var(--ink)">De uma foto comum até o filme do seu herói, em três etapas.</p>
+
+      <div class="steps">
+        <article class="step step-1">
+          <div class="step-media">
+            <img src="img/foto-original.jpg" alt="Foto de exemplo: menino de camiseta branca agachado, fundo liso" loading="lazy" width="736" height="1288">
+            <span class="sfx" style="right:12px;bottom:10px">Clic!</span>
+          </div>
+          <div class="step-body">
+            <span class="step-num">Passo 1</span>
+            <h3>Coloque uma foto do seu filho</h3>
+            <p>Uma foto comum, tirada no celular, já serve.</p>
+            <p class="hint">Dica: corpo inteiro, rosto bem iluminado e fundo simples, como esta.</p>
+          </div>
+        </article>
+
+        <article class="step step-2">
+          <div class="step-media">
+            <img src="img/personagem.webp" alt="O mesmo menino com fantasia de herói preta e capa, visto de frente, de lado, de costas e em detalhes" loading="lazy" width="1344" height="752">
+            <span class="sfx" style="left:14px;top:10px">Vush!</span>
+          </div>
+          <div class="step-body">
+            <span class="step-num">Passo 2</span>
+            <h3>Vista a fantasia de herói</h3>
+            <p>A IA coloca a fantasia no seu filho e mostra ele de todos os ângulos: frente, lado, costas e cada detalhe do uniforme. É assim que o herói continua com o rosto dele em todas as cenas.</p>
+            <div class="morph" aria-hidden="true">
+              <div><img src="img/foto-original.jpg" alt="" loading="lazy" style="object-position:center 12%"><span>Antes</span></div>
+              <svg viewBox="0 0 60 30" width="60" height="30"><path d="M4 15h44M38 5l12 10-12 10" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div><img src="img/personagem.webp" alt="" loading="lazy" style="object-position:76% 22%"><span>Depois</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step step-3">
+          <div class="step-media">
+            <img src="img/poster.webp" alt="Menino herói de capa vermelha voando sobre a cidade ao pôr do sol" loading="lazy" width="600" height="1050">
+            <span class="sfx" style="right:14px;top:38%">Uau!</span>
+          </div>
+          <div class="step-body">
+            <span class="step-num">Passo 3</span>
+            <h3>Crie a história e transforme em vídeo</h3>
+            <p>Você escreve a aventura, a IA gera as cenas e você monta com trilha e efeitos. O resultado é um vídeo de cinema, com seu filho como protagonista.</p>
+            <p class="hint">É esse vídeo que vira o presente de Dia das Crianças.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="bastidores">
+    <div class="wrap">
+      <h2 class="section-title comic">Você monta o elenco inteiro</h2>
+      <p class="section-lead">Antes do vídeo, você cria cada peça da história: o herói, o vilão e o mundo onde tudo acontece.</p>
+      <div class="cast">
+        <figure class="cast-hero">
+          <img src="img/personagem-superboy.webp" alt="Folha de personagem: menino com uniforme de herói cinza e capa vermelha, visto de frente, lado, costas e em detalhes" loading="lazy" width="1344" height="752">
+          <figcaption><b>O herói</b> com o rosto do seu filho, de todos os ângulos.</figcaption>
+        </figure>
+        <figure class="cast-villain">
+          <img src="img/vilao.webp" alt="Folha de personagem de um vilão de máscara preta e roupa verde" loading="lazy" width="1344" height="752">
+          <figcaption><b>O vilão</b> que vai dar trabalho para ele.</figcaption>
+        </figure>
+        <figure class="cast-city">
+          <img src="img/cenario-cidade.webp" alt="Cidade futurista com prédios de vidro e carros voadores" loading="lazy" width="1456" height="816">
+          <figcaption><b>O cenário</b> da aventura.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="videos">
+    <div class="wrap">
+      <h2 class="section-title comic">Vídeos que a gente fez</h2>
+      <p class="section-lead">Cada um começou com uma foto comum de criança. Aperte o play e veja até onde dá para chegar.</p>
+
+      <div class="reels">
+        <figure class="reel reel-feature">
+          <video src="video/superboy.mp4" poster="video/superboy.jpg" preload="none" playsinline></video>
+          <button class="play" type="button" aria-label="Assistir o vídeo do Superboy">
+            <span class="play-icon"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="#000"/></svg></span>
+          </button>
+          <figcaption><b>Superboy</b>Voo sobre a cidade do futuro</figcaption>
+        </figure>
+        <figure class="reel reel-tall">
+          <video src="video/menina-maravilha.mp4" poster="video/menina-maravilha.jpg" preload="none" playsinline></video>
+          <button class="play" type="button" aria-label="Assistir o vídeo da Menina Maravilha">
+            <span class="play-icon"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="#000"/></svg></span>
+          </button>
+          <figcaption><b>Menina Maravilha</b>Assalto ao banco frustrado</figcaption>
+        </figure>
+        <figure class="reel">
+          <video src="video/batboy.mp4" poster="video/batboy.jpg" preload="none" playsinline></video>
+          <button class="play" type="button" aria-label="Assistir o vídeo do Batboy">
+            <span class="play-icon"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="#000"/></svg></span>
+          </button>
+          <figcaption><b>Batboy</b>Patrulha na noite da cidade</figcaption>
+        </figure>
+        <figure class="reel">
+          <video src="video/flashboy.mp4" poster="video/flashboy.jpg" preload="none" playsinline></video>
+          <button class="play" type="button" aria-label="Assistir o vídeo do Flashboy">
+            <span class="play-icon"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="#000"/></svg></span>
+          </button>
+          <figcaption><b>Flashboy</b>Velocidade pelas ruas da cidade</figcaption>
+        </figure>
+      </div>
+      <p class="reels-cta"><a class="btn" href="https://hotm.io/meufilhoheroi">Quero fazer um desses com meu filho</a></p>
+    </div>
+  </section>
+
+  <section class="section section-sky" id="aulas">
+    <div class="wrap">
+      <h2 class="section-title comic">As 5 aulas</h2>
+      <p class="section-lead" style="color:var(--ink)">Aulas rápidas e práticas. Você assiste, faz junto e termina cada uma com algo pronto.</p>
+      <div class="strip">
+        <article class="panel">
+          <span class="panel-num">Aula 1</span>
+          <h3>Transformando seu filho em um herói</h3>
+          <p>Da foto do seu filho ao personagem de herói, com fantasia e o rosto dele preservado.</p>
+        </article>
+        <article class="panel">
+          <span class="panel-num">Aula 2</span>
+          <h3>Prompts de vídeo</h3>
+          <p>Como escrever os comandos que dizem para a IA o que acontece em cada cena.</p>
+        </article>
+        <article class="panel">
+          <span class="panel-num">Aula 3</span>
+          <h3>Gerando os vídeos</h3>
+          <p>Colocando o herói em ação e gerando as cenas da história.</p>
+        </article>
+        <article class="panel">
+          <span class="panel-num">Aula 4</span>
+          <h3>Edição e sonorização</h3>
+          <p>Juntando as cenas com trilha, efeitos e som.</p>
+        </article>
+        <article class="panel">
+          <span class="panel-num">Aula 5</span>
+          <h3>Fazendo um vídeo profissional</h3>
+          <p>Os acabamentos que deixam o vídeo com cara de cinema.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pra-quem">
+    <div class="wrap fit">
+      <div class="fit-photo">
+        <img src="img/heroi-sorrindo.jpg" alt="Menino sorrindo com capa vermelha e o punho erguido" loading="lazy" width="392" height="256">
+      </div>
+      <div>
+        <h2 class="section-title comic">É pra você se</h2>
+        <ul class="fit-list">
+          <li>Quer dar um presente de Dia das Crianças que seu filho nunca vai esquecer.</li>
+          <li>Nunca usou inteligência artificial e quer um passo a passo simples.</li>
+          <li>Não quer começar gastando alto: as ferramentas são gratuitas ou acessíveis.</li>
+          <li>Tem pouco tempo: as aulas são rápidas e dá para fazer ainda hoje.</li>
+        </ul>
+        <div class="perks"><span>Acesso imediato</span><span>Conteúdo prático</span><span>Feito para iniciantes</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sky" id="oferta">
+    <div class="wrap offer-grid">
+      <img class="offer-art" src="img/caixa.webp" alt="" loading="lazy" width="350" height="560">
+      <div class="offer" id="offerBox">
+        <span class="offer-tag">Só até amanhã</span>
+        <h2>Meu Filho Herói</h2>
+        <ul>
+          <li>5 aulas rápidas e práticas</li>
+          <li>Da foto ao vídeo final, passo a passo</li>
+          <li>IAs gratuitas ou com o menor custo possível</li>
+          <li>Acesso imediato</li>
+        </ul>
+        <p class="only">Apenas</p>
+        <div class="price comic">R$ 37</div>
+        <p class="price-sub">pagamento único</p>
+        <div class="clock" aria-label="Tempo restante da oferta">
+          <div><b data-cd="h">00</b>horas</div>
+          <div><b data-cd="m">00</b>minutos</div>
+          <div><b data-cd="s">00</b>segundos</div>
+        </div>
+        <a class="btn btn-wide" href="https://hotm.io/meufilhoheroi" id="ctaBuy">Quero criar o herói do meu filho</a>
+        <p class="ended-msg">A oferta de Dia das Crianças terminou.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="duvidas">
+    <div class="wrap faq">
+      <h2 class="section-title comic">Dúvidas</h2>
+      <details>
+        <summary>Preciso entender de tecnologia?</summary>
+        <p>Não. O curso é feito para iniciantes e mostra cada etapa, da foto ao vídeo pronto.</p>
+      </details>
+      <details>
+        <summary>Vou ter que pagar pelas ferramentas?</summary>
+        <p>Não precisa. O curso usa IAs gratuitas ou com o menor custo possível, e mostra como aproveitar ao máximo as versões grátis.</p>
+      </details>
+      <details>
+        <summary>Que tipo de foto do meu filho eu preciso?</summary>
+        <p>Uma foto comum de celular serve. Funciona melhor com corpo inteiro, rosto bem iluminado e fundo simples.</p>
+      </details>
+      <details>
+        <summary>Dá tempo de fazer antes do Dia das Crianças?</summary>
+        <p>Sim. As aulas são rápidas e o acesso é liberado logo depois da compra.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo-orieng.png" alt="Orieng" width="600" height="198">
+    <div>Meu Filho Herói é um curso da Orieng. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="sticky">
+  <a class="btn btn-wide" href="https://hotm.io/meufilhoheroi">Quero criar o herói do meu filho</a>
+</div>
+
+<script>
+  // TROCAR: fim da oferta (horário de Brasília)
+  const DEADLINE = new Date("2026-10-12T23:59:59-03:00");
+
+  // ---------- Nome do herói ----------
+  const input = document.getElementById("kidName");
+  const heroName = document.getElementById("heroName");
+  const balloon = document.getElementById("balloon");
+  const burst = document.getElementById("burst");
+  const heroArt = document.getElementById("heroArt");
+  const titleBtns = document.querySelectorAll(".titles button");
+  let title = "Super";
+
+  function render(animate) {
+    const raw = input.value.trim();
+    const name = raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : "";
+    heroName.textContent = name ? `${title} ${name}!` : `${title} Herói!`;
+    balloon.textContent = name ? `Ei, ${name}, a cidade precisa de você!` : "Ei, a cidade precisa de você!";
+    if (animate) {
+      burst.classList.remove("swap");
+      void burst.offsetWidth;
+      burst.classList.add("swap");
+    }
+  }
+  // No celular a capa fica abaixo do campo: ao confirmar, mostra o resultado
+  function revealArt() {
+    const r = heroArt.getBoundingClientRect();
+    if (r.top > innerHeight - 120 || r.bottom < 80) heroArt.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  let typing;
+  input.addEventListener("input", () => {
+    render(false);
+    clearTimeout(typing);
+    typing = setTimeout(() => render(true), 350);
+  });
+  input.addEventListener("change", revealArt);
+  input.addEventListener("keydown", e => { if (e.key === "Enter") { input.blur(); revealArt(); } });
+  titleBtns.forEach(btn => btn.addEventListener("click", () => {
+    titleBtns.forEach(b => b.setAttribute("aria-pressed", b === btn));
+    title = btn.dataset.title;
+    render(true);
+    revealArt();
+  }));
+
+  // ---------- Vídeos: só baixa quando a pessoa aperta o play; um toca por vez ----------
+  const videos = [...document.querySelectorAll(".reel video")];
+  document.querySelectorAll(".reel").forEach(reel => {
+    const v = reel.querySelector("video");
+    reel.querySelector(".play").addEventListener("click", () => {
+      reel.classList.add("playing");
+      v.controls = true;
+      v.play();
+    });
+    v.addEventListener("play", () => videos.forEach(o => { if (o !== v) o.pause(); }));
+  });
+
+  // ---------- Contagem regressiva ----------
+  const pad = n => String(n).padStart(2, "0");
+  const inline = document.querySelector("[data-countdown-inline]");
+  const cd = { h: document.querySelector('[data-cd="h"]'), m: document.querySelector('[data-cd="m"]'), s: document.querySelector('[data-cd="s"]') };
+  function tick() {
+    const diff = Math.max(0, DEADLINE - Date.now());
+    if (diff === 0) {
+      document.getElementById("offerBox").classList.add("ended");
+      inline.textContent = "encerrada";
+      return;
+    }
+    const h = Math.floor(diff / 3.6e6);
+    const m = Math.floor(diff % 3.6e6 / 6e4);
+    const s = Math.floor(diff % 6e4 / 1000);
+    cd.h.textContent = pad(h); cd.m.textContent = pad(m); cd.s.textContent = pad(s);
+    inline.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+    setTimeout(tick, 1000);
+  }
+  tick();
+
+  // ---------- Botão fixo no celular ----------
+  const sticky = document.getElementById("sticky");
+  let topVisible = true, offerVisible = false;
+  const update = () => sticky.classList.toggle("show", !topVisible && !offerVisible);
+  new IntersectionObserver(([e]) => { topVisible = e.isIntersecting; update(); }).observe(document.getElementById("ctaTop"));
+  new IntersectionObserver(([e]) => { offerVisible = e.isIntersecting; update(); }).observe(document.getElementById("oferta"));
+</script>
+</body>
+</html>
